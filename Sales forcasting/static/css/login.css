@@ -1,0 +1,265 @@
+/* login.css - Unified Login/Register Styling */
+
+:root {
+    --primary-purple: rgb(122, 40, 131);
+    --dark-purple: rgb(82, 20, 91);
+    --light-purple: rgb(162, 80, 171);
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --card-bg: #1e1e1e;
+    --text-light: #f0f0f0;
+    --text-muted: #aaaaaa;
+    --transition-speed: 0.3s;
+}
+
+/* Base Structure */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+.navbar {
+    background-color: var(--darker-bg);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+.navbar a:hover {
+    color: var(--light-purple);
+    transform: translateY(-2px);
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--light-purple);
+    transition: all var(--transition-speed) ease;
+}
+
+.navbar a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.card h2 {
+    color: var(--light-purple);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--light-purple);
+    border-radius: 3px;
+}
+
+/* Form Elements */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+form div {
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--darker-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all var(--transition-speed) ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--light-purple);
+    box-shadow: 0 0 0 3px rgba(162, 80, 171, 0.2);
+}
+
+/* Button */
+button.btn {
+    width: 100%;
+    padding: 1.1rem;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 15px rgba(122, 40, 131, 0.3);
+}
+
+button.btn:hover {
+    background: linear-gradient(135deg, var(--light-purple), var(--primary-purple));
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(122, 40, 131, 0.4);
+}
+
+button.btn:active {
+    transform: translateY(1px);
+}
+
+/* Alert Messages */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    background-color: rgba(162, 80, 171, 0.2);
+    color: var(--light-purple);
+    border-left: 4px solid var(--light-purple);
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Footer Link */
+.text-muted {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.text-muted a {
+    color: var(--light-purple);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    position: relative;
+}
+
+.text-muted a:hover {
+    color: white;
+}
+
+.text-muted a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--light-purple);
+    transition: width var(--transition-speed) ease;
+}
+
+.text-muted a:hover::after {
+    width: 100%;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .card h2 {
+        font-size: 1.9rem;
+        margin-bottom: 2rem;
+    }
+    
+    form {
+        gap: 1.5rem;
+    }
+    
+    input, button.btn {
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 1.8rem 1.2rem;
+    }
+    
+    .card h2 {
+        font-size: 1.7rem;
+    }
+}

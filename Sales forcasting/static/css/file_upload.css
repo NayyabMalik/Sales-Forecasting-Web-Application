@@ -1,0 +1,196 @@
+:root {
+    --primary-purple: rgb(122, 40, 131);
+    --dark-purple: rgb(82, 20, 91);
+    --light-purple: rgb(162, 80, 171);
+    --bright-purple: rgb(182, 100, 191);
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --card-bg: #1e1e1e;
+    --text-light: #f0f0f0;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-hero {
+    background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.upload-hero h1 {
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.upload-hero .lead {
+    opacity: 0.9;
+}
+
+.upload-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(122, 40, 131, 0.3);
+}
+
+.file-drop-area {
+    border: 2px dashed var(--primary-purple);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    background-color: rgba(122, 40, 131, 0.05);
+}
+
+.file-drop-area:hover {
+    border-color: var(--light-purple);
+    background-color: rgba(122, 40, 131, 0.1);
+    transform: translateY(-2px);
+}
+
+.file-drop-area.active {
+    border-color: var(--bright-purple);
+    background-color: rgba(122, 40, 131, 0.15);
+}
+
+.file-drop-area i {
+    transition: transform 0.3s ease;
+}
+
+.file-drop-area:hover i {
+    transform: scale(1.1);
+}
+
+.file-drop-area h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.btn-outline-primary {
+    color: var(--light-purple);
+    border-color: var(--light-purple);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-purple);
+    color: white;
+    border-color: var(--primary-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(122, 40, 131, 0.3);
+}
+
+.upload-btn {
+    background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.upload-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(122, 40, 131, 0.4);
+    background: linear-gradient(135deg, var(--light-purple), var(--primary-purple));
+}
+
+.file-types {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+#filePreview {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.file-preview-item {
+    background-color: var(--darker-bg);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid var(--primary-purple);
+    transition: all 0.3s ease;
+}
+
+.file-preview-item:hover {
+    background-color: rgba(122, 40, 131, 0.1);
+    transform: translateX(5px);
+}
+
+.file-preview-item .file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-preview-item .file-icon {
+    color: var(--light-purple);
+}
+
+.file-preview-item .file-size {
+    background-color: rgba(122, 40, 131, 0.3);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(122, 40, 131, 0.3);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.upload-container {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .upload-hero {
+        padding: 2rem 0;
+    }
+    
+    .upload-container {
+        padding: 1.5rem;
+    }
+    
+    .file-drop-area {
+        padding: 1.5rem;
+    }
+}

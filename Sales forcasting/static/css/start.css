@@ -1,0 +1,152 @@
+/* style.css */
+:root {
+    --primary-purple: rgb(122, 40, 131);
+    --dark-purple: rgb(82, 20, 91);
+    --light-purple: rgb(162, 80, 171);
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --card-bg: #1e1e1e;
+    --text-light: #f0f0f0;
+    --text-muted: #aaaaaa;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: var(--darker-bg);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+.navbar a:hover {
+    color: var(--light-purple);
+    transform: translateY(-2px);
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--light-purple);
+    transition: all var(--transition-speed) ease;
+}
+
+.navbar a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: var(--light-purple);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.text-muted {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0.5rem;
+    transition: all var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(122, 40, 131, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--light-purple);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(122, 40, 131, 0.4);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    .card {
+        padding: 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}

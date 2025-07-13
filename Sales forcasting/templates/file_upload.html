@@ -1,0 +1,123 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Forecasting File Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/file_upload.css') }}">
+
+</head>
+<body>
+    <div class="upload-hero text-center">
+        <div class="container">
+            <h1><i class="fas fa-cloud-upload-alt"></i> Upload Sales Data</h1>
+            <p class="lead">Upload your sales forecasting files to generate insights and predictions</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="upload-container">
+            <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+                <div class="file-drop-area" id="fileDropArea">
+                    <i class="fas fa-file-upload fa-3x mb-3" style="color: var(--primary-color);"></i>
+                    <h4>Drag & Drop Files Here</h4>
+                    <p class="text-muted">or</p>
+                    <label for="file" class="btn btn-outline-primary">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </label>
+                    <input type="file" id="file" name="file" accept=".csv, .xls, .xlsx, .txt, .json, .xml, .pdf" multiple class="d-none">
+                </div>
+                
+                <div id="filePreview" class="mb-3"></div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn upload-btn text-white">
+                        <i class="fas fa-upload"></i> Upload Files
+                    </button>
+                </div>
+                
+                <div class="file-types text-center">
+                    Supported formats: CSV, Excel, JSON, XML, TXT, PDF
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Sales Forecasting Analytics &copy; 2023</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/file_upload.js')}}">
+    </script>
+
+</body>
+</html>
+
+
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Sales Forecasting File Upload</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/file_upload.css') }}">
+ 
+ </head>
+ <body>
+     <div class="upload-hero text-center">
+         <div class="container">
+             <h1><i class="fas fa-cloud-upload-alt"></i> Upload Sales Data</h1>
+             <p class="lead">Upload your sales forecasting files to generate insights and predictions</p>
+         </div>
+     </div>
+     
+     <div class="container">
+         <div class="upload-container">
+             <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+                 <div class="file-drop-area" id="fileDropArea">
+                     <i class="fas fa-file-upload fa-3x mb-3" style="color: var(--primary-color);"></i>
+                     <h4>Drag & Drop Files Here</h4>
+                     <p class="text-muted">or</p>
+                     <label for="file" class="btn btn-outline-primary">
+                         <i class="fas fa-folder-open"></i> Browse Files
+                     </label>
+                     <input type="file" id="file" name="file" accept=".csv, .xls, .xlsx, .txt, .json, .xml, .pdf" multiple class="d-none">
+                 </div>
+                 
+                 <div id="filePreview" class="mb-3"></div>
+                 
+                 <div class="d-grid">
+                     <button type="submit" class="btn upload-btn text-white">
+                         <i class="fas fa-upload"></i> Upload Files
+                     </button>
+                 </div>
+                 
+                 <div class="file-types text-center">
+                     Supported formats: CSV, Excel, JSON, XML, TXT, PDF
+                 </div>
+             </form>
+         </div>
+     </div>
+     
+     <footer>
+         <p>Sales Forecasting Analytics &copy; 2025</p>
+     </footer>
+ 
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+     <script src="{{ url_for('static', filename='js/file_upload.js')}}">
+     </script>
+ 
+ </body>
+ </html>
+ 
+ 
+ 
+ 

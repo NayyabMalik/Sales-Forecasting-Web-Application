@@ -1,0 +1,111 @@
+:root {
+    --primary-purple: rgb(122, 40, 131);
+    --dark-purple: rgb(82, 20, 91);
+    --light-purple: rgb(162, 80, 171);
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --card-bg: #1e1e1e;
+    --text-light: #f0f0f0;
+    --text-muted: #ffffff;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: var(--dark-purple);
+    padding: 1rem;
+}
+
+.navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.navbar a:hover {
+    color: var(--light-purple);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--light-purple);
+}
+
+.text-muted {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.alert {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+input[type="file"] {
+    background-color: var(--darker-bg);
+    color: var(--text-light);
+    border: 1px solid var(--dark-purple);
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    color: var(--text-light);
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    border: 1px solid var(--dark-purple);
+}
+
+table th {
+    background-color: var(--dark-purple);
+}
+
+img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}

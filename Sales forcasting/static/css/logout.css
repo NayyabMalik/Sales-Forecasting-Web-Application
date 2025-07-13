@@ -1,0 +1,114 @@
+/* Add to your existing style.css */
+
+/* Logout-specific styles */
+.card h2 {
+    color: var(--light-purple);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.card p.text-muted {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-group .btn {
+    flex: 1;
+    min-width: 180px;
+    max-width: 250px;
+    text-align: center;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--light-purple);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(162, 80, 171, 0.1);
+    color: var(--light-purple);
+}
+
+/* Animation for logout confirmation */
+.card {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.navbar {
+    background-color: var(--darker-bg);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+.navbar a:hover {
+    color: var(--light-purple);
+    transform: translateY(-2px);
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--light-purple);
+    transition: all var(--transition-speed) ease;
+}
+
+.navbar a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .btn-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .card {
+        padding: 2rem 1.5rem;
+    }
+}
