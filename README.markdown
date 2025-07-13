@@ -174,6 +174,5 @@ To forecast sales from a CSV file (`sales.csv`) with columns `Date` and `Sales`:
 - **Permissions**: The code and referenced lab manuals are shared with permission for educational purposes. Contact Mam Iqra Nasem for access to original course materials.
 - **File Size**: Use Git LFS for large files (e.g., `git lfs track "*.csv" "*.xlsx" "*.png"`) if uploading to GitHub.
 
-## License
 
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
