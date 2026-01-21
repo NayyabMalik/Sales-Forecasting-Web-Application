@@ -21,10 +21,8 @@ sales-forecasting/
 ├── app.py                     # Flask application with forecasting and visualization logic
 ├── requirements.txt           # Python dependencies
 ├── templates/                # HTML templates for the web interface
-│   ├── index.html            # Home page (file upload)
 │   ├── login.html            # User login/registration page
 │   ├── logout.html           # Logout page
-│   ├── progress.html         # Progress tracking page (placeholder, not implemented in app.py)
 │   ├── result.html           # Results display page (for visualizations/forecasts)
 │   ├── register.html         # Alias for login.html with registration form
 │   ├── upload.html           # File upload page (alias for index.html)
