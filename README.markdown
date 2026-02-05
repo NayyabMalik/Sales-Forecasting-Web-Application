@@ -46,42 +46,6 @@ This repository contains a Flask-based web application for sales forecasting, al
 | Frontend          | Jinja2 templates, vanilla JS + custom CSS         |
 
 
-sales-forecasting/
-├── app.py                     # Main Flask application (forecasting + visualization logic)
-├── requirements.txt           # Python dependencies
-├── .env.example               # Example environment variables (API keys etc.)
-├── README.md                  # This file
-├── LICENSE                    # MIT License
-│
-├── templates/                 # All Jinja2 HTML templates
-│   ├── start.html             # Landing / welcome page
-│   ├── login.html             # Login + registration form
-│   ├── logout.html            # Logout confirmation page
-│   ├── file_upload.html       # File upload interface
-│   ├── view_files.html        # List of uploaded files + previews / stats / charts
-│   └── prediction.html        # Forecast configuration + results page
-│
-├── static/                    # Static assets served to browser
-│   ├── css/                   # Stylesheets (one per page + shared)
-│   │   ├── start.css
-│   │   ├── login.css
-│   │   ├── logout.css
-│   │   ├── file_upload.css
-│   │   ├── view_files.css
-│   │   ├── prediction.css
-│   │   ├── style.css          # Shared / global styles
-│   │   └── result.css         # (if still used – can be merged)
-│   └── js/                    # Client-side JavaScript
-│       ├── file_upload.js     # Upload progress / validation
-│       ├── prediction.js      # Forecast form behavior
-│       └── view_files.js      # Dynamic file list interactions
-│
-├── uploads/                   # Temporary storage for user-uploaded files
-│   └── (user_id)/(session_id)/   # Files are isolated per user & session
-│
-└── static/images/             # Generated matplotlib/seaborn charts
-└── (user_id)/(session_id)/   # Visualizations stored per user & session
-
 ## Setup Instructions
 
 1. **Clone the Repository**:
