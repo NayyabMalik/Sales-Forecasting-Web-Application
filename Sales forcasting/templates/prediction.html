@@ -10,117 +10,159 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="{{ url_for('start') }}">Home</a>
-        <a href="{{ url_for('index') }}">Upload</a>
-        <a href="{{ url_for('view_files') }}">View Files</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('start') }}">
+                <i class="fas fa-chart-line me-2"></i>Sales Forecast
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}"><i class="fas fa-upload me-1"></i> Upload</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('view_files') }}"><i class="fas fa-folder me-1"></i> Files</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt me-1"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <div class="dashboard-header">
+    <div class="dashboard-header bg-primary text-white py-4">
         <div class="container">
-            <h1><i class="fas fa-chart-line"></i> Sales Prediction for {{ filename }}</h1>
-            <p class="mb-0 text-muted">Configure your forecast parameters</p>
+            <h1><i class="fas fa-chart-line me-2"></i> Sales Prediction</h1>
+            <p class="lead mb-0">Configure forecast settings for <strong>{{ filename }}</strong></p>
         </div>
     </div>
 
-    <div class="container">
-        {% with messages = get_flashed_messages() %}
+    <div class="container my-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-info">{{ message }}</div>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category=='message' else category }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
         {% if error %}
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <i class="fas fa-exclamation-triangle me-2"></i> {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         {% endif %}
 
-        <div class="card mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-light">
+                <h4 class="mb-0"><i class="fas fa-cog me-2"></i> Forecast Settings</h4>
+            </div>
             <div class="card-body">
-                <h3 class="card-title">Forecast Parameters</h3>
                 <form method="POST" action="{{ url_for('generate_prediction', filename=filename) }}">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="date_column" class="form-label">Date Column</label>
-                            <select class="form-control" id="date_column" name="date_column">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label for="date_column" class="form-label fw-bold">Date Column</label>
+                            <select class="form-select" id="date_column" name="date_column" required>
+                                <option value="">-- Select date column --</option>
                                 {% for col in date_columns %}
-                                    <option value="{{ col }}" {% if col == date_column %}selected{% endif %}>{{ col }}</option>
+                                    <option value="{{ col }}" {% if col == date_column or (not date_column and col in ['Sale_Date', 'Date', 'date']) %}selected{% endif %}>
+                                        {{ col }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="value_column" class="form-label">Value Column</label>
-                            <select class="form-control" id="value_column" name="value_column">
+
+                        <div class="col-md-6">
+                            <label for="value_column" class="form-label fw-bold">Value Column (to forecast)</label>
+                            <select class="form-select" id="value_column" name="value_column" required>
+                                <option value="">-- Select value column --</option>
                                 {% for col in value_columns %}
-                                    <option value="{{ col }}" {% if col == value_column %}selected{% endif %}>{{ col }}</option>
+                                    <option value="{{ col }}" {% if col == value_column or (not value_column and col in ['Sales_Amount', 'sales_amount', 'Sales', 'Revenue']) %}selected{% endif %}>
+                                        {{ col }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="periods" class="form-label">Forecast Periods (Months)</label>
-                            <select class="form-control" id="periods" name="periods">
-                                {% for period in periods_options %}
-                                    <option value="{{ period }}" {% if period == periods %}selected{% endif %}>{{ period }}</option>
+
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6">
+                            <label for="periods" class="form-label fw-bold">Forecast Horizon (months)</label>
+                            <select class="form-select" id="periods" name="periods">
+                                {% for p in periods_options %}
+                                    <option value="{{ p }}" {% if p == periods %}selected{% endif %}>{{ p }} months</option>
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="confidence_interval" class="form-label">Confidence Interval (%)</label>
-                            <input type="number" class="form-control" id="confidence_interval" name="confidence_interval" value="{{ confidence_interval }}" min="50" max="99" step="1">
+
+                        <div class="col-md-6">
+                            <label for="confidence_interval" class="form-label fw-bold">Confidence Interval</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="confidence_interval" name="confidence_interval"
+                                       value="{{ confidence_interval|default(95) }}" min="50" max="99" step="1">
+                                <span class="input-group-text">%</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Forecasting Models</label>
-                        <div>
-                            {% for model in models %}
+
+                    <div class="mt-4">
+                        <label class="form-label fw-bold">Forecasting Models</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            {% set selected_models = models if request.method == 'POST' else ['ARIMA'] %}
+                            {% for model in ['ARIMA', 'Prophet', 'LSTM'] %}
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="{{ model }}" name="models" value="{{ model }}" {% if model in models %}checked{% endif %}>
-                                    <label class="form-check-label" for="{{ model }}">{{ model }}</label>
+                                    <input class="form-check-input" type="checkbox" name="models" value="{{ model }}"
+                                           id="model_{{ model }}" {% if model in selected_models %}checked{% endif %}>
+                                    <label class="form-check-label" for="model_{{ model }}">{{ model }}</label>
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-chart-line"></i> Generate Forecast</button>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-chart-line me-2"></i> Generate Forecast
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
 
         {% if forecast_table %}
-            <div class="card mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-table me-2"></i> Forecast Results</h4>
+                </div>
                 <div class="card-body">
-                    <h3 class="card-title">Forecast Results</h3>
                     <div class="table-responsive">
-                        {{ forecast_table|safe }}
+                        {{ forecast_table | safe }}
                     </div>
-                    <a href="{{ url_for('download_forecast') }}" class="btn btn-light mt-3">
-                        <i class="fas fa-download"></i> Download Forecast
+                    <a href="{{ url_for('download_forecast') }}" class="btn btn-outline-success mt-3">
+                        <i class="fas fa-download me-2"></i> Download as CSV
                     </a>
                 </div>
             </div>
         {% endif %}
 
         {% if visualizations %}
-            <div class="card">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i> Visualizations</h4>
+                </div>
                 <div class="card-body">
-                    <h3 class="card-title">Forecast Visualizations</h3>
                     <div class="visualization-grid">
                         {% for viz in visualizations %}
                             <div class="viz-card">
-                                <div class="viz-title">{{ viz.get('title', 'Visualization') }}</div>
+                                <div class="viz-title">{{ viz.title | default('Visualization') }}</div>
                                 <div class="viz-container">
-                                    <img src="{{ viz.url }}" alt="{{ viz.get('title', 'Data visualization') }}" class="img-fluid rounded">
-                                    <button class="graph-save-btn" onclick="saveGraph('{{ viz.url }}', '{{ viz.get('title', 'graph')|replace(' ', '_') }}')">
+                                    <img src="{{ viz.url }}" alt="{{ viz.title | default('Chart') }}" class="img-fluid">
+                                    <button class="graph-save-btn" onclick="saveGraph('{{ viz.url }}', '{{ viz.title | default('chart') | replace(' ', '_') }}')">
                                         <i class="fas fa-download"></i> Save
                                     </button>
                                 </div>
-                                <div class="viz-description small text-muted">
-                                    {{ viz.get('description', 'Data visualization') }}
+                                <div class="p-3 small text-muted">
+                                    {{ viz.description | default('Generated visualization') }}
                                 </div>
                             </div>
                         {% endfor %}
@@ -128,25 +170,167 @@
                 </div>
             </div>
         {% endif %}
+
+        <!-- Chatbot Panel -->
+        {% if forecast_table %}
+        <div class="card shadow mt-4" id="chat-panel">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-robot me-2"></i> Forecast Assistant</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-light me-2" onclick="clearChat()">
+                        <i class="fas fa-trash-alt me-1"></i> Clear
+                    </button>
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#chat-body" aria-expanded="true">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body collapse show" id="chat-body" style="max-height: 400px; overflow-y: auto;">
+                <div class="welcome-message">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Hello! I'm your Forecast Assistant.</strong><br>
+                    <small>Turn forecasts into insights. Ask what changed, why it matters, and what’s next.</small>
+                </div>
+                <div id="chat-messages"></div>
+            </div>
+            <div class="card-footer">
+                <div class="input-group">
+                    <textarea class="form-control" id="chat-input" rows="1" placeholder="Ask about the forecast..." autocomplete="off" style="resize: none;"></textarea>
+                    <button class="btn btn-primary" id="chat-send"><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <small class="text-muted mt-1 d-block">Press Enter to send • Shift+Enter for new line</small>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
-    <a href="{{ url_for('view_files') }}" class="floating-action-btn">
+    <!-- Floating back button -->
+    <a href="{{ url_for('view_files') }}" class="floating-back-btn">
         <i class="fas fa-arrow-left"></i>
     </a>
 
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <!-- Toast for graph save -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header" style="background-color: var(--primary-purple); color: var(--text-light);">
-                <strong class="me-auto">Notification</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-header bg-primary text-white">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
-            <div class="toast-body" style="background-color: var(--card-bg); color: var(--text-light);">
-                Graph saved successfully!
+            <div class="toast-body">
+                Graph saved to your device!
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+    <script>
+        // Graph save function
+        function saveGraph(url, title) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${title.replace(/[^a-z0-9]/gi, '_')}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+            toast.show();
+        }
+
+        // Chatbot functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatMessages = document.getElementById('chat-messages');
+
+    function formatTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function addMessage(content, isUser = false) {
+        const div = document.createElement('div');
+        div.className = `chat-message ${isUser ? 'user-message' : 'bot-message'}`;
+        const timestamp = formatTime();
+        div.innerHTML = `
+            ${content}
+            <span class="chat-timestamp">${timestamp}</span>
+        `;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chat-message bot-message typing-indicator';
+        typingDiv.id = 'typing-indicator';
+        typingDiv.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <span class="chat-timestamp">${formatTime()}</span>
+        `;
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTyping() {
+        document.getElementById('typing-indicator')?.remove();
+    }
+
+    function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, true);
+        chatInput.value = '';
+        showTyping();
+
+        fetch('{{ url_for("chat_explain") }}', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'   // ← helps some setups
+            },
+            body: JSON.stringify({ message: text })
+        })
+        .then(r => r.json())
+        .then(data => {
+            hideTyping();
+            if (data.error) {
+                addMessage(`<strong>Error:</strong> ${data.error}`, false);
+            } else {
+                const formatted = data.response
+                    .replace(/\n/g, '<br>')
+                    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+                addMessage(formatted, false);
+            }
+        })
+        .catch(err => {
+            hideTyping();
+            addMessage(`<strong>Connection error:</strong> ${err.message}`, false);
+        });
+    } // <-- THIS closes sendMessage()
+
+    function clearChat() {
+        chatMessages.innerHTML = '';
+        const welcome = document.querySelector('.welcome-message').cloneNode(true);
+        chatMessages.appendChild(welcome);
+    }
+
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Auto-focus input
+    chatInput.focus();
+});
+
+    </script>
 </body>
 </html>
