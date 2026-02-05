@@ -46,37 +46,41 @@ This repository contains a Flask-based web application for sales forecasting, al
 | Frontend          | Jinja2 templates, vanilla JS + custom CSS         |
 
 
-## sales-forecasting/
-├── app.py                     # Flask application with forecasting and visualization logic
+sales-forecasting/
+├── app.py                     # Main Flask application (forecasting + visualization logic)
 ├── requirements.txt           # Python dependencies
-├── templates/                # HTML templates for the web interface
-│   ├── login.html            # User login/registration page
-│   ├── logout.html           # Logout page
-│   ├── result.html           # Results display page (for visualizations/forecasts)
-│   ├── register.html         # Alias for login.html with registration form
-│   ├── file_upload.html      # Main upload interface
-│   ├── view_files.html       # File listing and visualization page
-│   ├── prediction.html       # Forecasting interface
-│   ├── start.html            # Landing page
-├── static/                   # Static files for the web interface
-│   ├── css/                 # CSS stylesheets
+├── .env.example               # Example environment variables (API keys etc.)
+├── README.md                  # This file
+├── LICENSE                    # MIT License
+│
+├── templates/                 # All Jinja2 HTML templates
+│   ├── start.html             # Landing / welcome page
+│   ├── login.html             # Login + registration form
+│   ├── logout.html            # Logout confirmation page
+│   ├── file_upload.html       # File upload interface
+│   ├── view_files.html        # List of uploaded files + previews / stats / charts
+│   └── prediction.html        # Forecast configuration + results page
+│
+├── static/                    # Static assets served to browser
+│   ├── css/                   # Stylesheets (one per page + shared)
 │   │   ├── start.css
-│   │   ├── prediction.css
 │   │   ├── login.css
 │   │   ├── logout.css
-│   │   ├── style.css
-│   │   ├── result.css
-│   │   ├── register.css
-│   │   ├── view_files.css
 │   │   ├── file_upload.css
-│   ├── js/                  # JavaScript files
-│   │   ├── file_upload.js
-│   │   ├── prediction.js
-|   |   ├── view_files.js  
-├── uploads/                  # User-uploaded files (temporary, user-specific)
-├── static/images/            # Generated visualizations (user-specific)
-├── README.md                # This file
-├── LICENSE                  # MIT License
+│   │   ├── view_files.css
+│   │   ├── prediction.css
+│   │   ├── style.css          # Shared / global styles
+│   │   └── result.css         # (if still used – can be merged)
+│   └── js/                    # Client-side JavaScript
+│       ├── file_upload.js     # Upload progress / validation
+│       ├── prediction.js      # Forecast form behavior
+│       └── view_files.js      # Dynamic file list interactions
+│
+├── uploads/                   # Temporary storage for user-uploaded files
+│   └── (user_id)/(session_id)/   # Files are isolated per user & session
+│
+└── static/images/             # Generated matplotlib/seaborn charts
+└── (user_id)/(session_id)/   # Visualizations stored per user & session
 
 ## Setup Instructions
 
