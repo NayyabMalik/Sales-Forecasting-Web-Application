@@ -2,7 +2,7 @@
 
 This repository contains a Flask-based web application for sales forecasting, allowing users to upload time series data (CSV, Excel, JSON, XML, PDF, or text files), generate statistical visualizations, and predict future sales using ARIMA, Prophet, and LSTM models. The application supports user authentication (registration, login, logout), file management, and interactive forecasting with customizable parameters (e.g., forecast periods, confidence intervals). Visualizations include histograms, box plots, correlation heatmaps, and forecast comparisons, enhancing data analysis and prediction interpretability.
 
-This project is part of my deep learning coursework at the National University of Modern Languages, Islamabad, submitted on October 31, 2024, under the supervision of Mam Iqra Nasem. It applies time series forecasting techniques from my deep learning labs, particularly LSTM-based modeling.
+
 
 ## Features
 
@@ -25,23 +25,25 @@ sales-forecasting/
 │   ├── logout.html           # Logout page
 │   ├── result.html           # Results display page (for visualizations/forecasts)
 │   ├── register.html         # Alias for login.html with registration form
-│   ├── upload.html           # File upload page (alias for index.html)
 │   ├── file_upload.html      # Main upload interface
 │   ├── view_files.html       # File listing and visualization page
 │   ├── prediction.html       # Forecasting interface
 │   ├── start.html            # Landing page
 ├── static/                   # Static files for the web interface
 │   ├── css/                 # CSS stylesheets
-│   │   ├── index.css
+│   │   ├── start.css
+│   │   ├── prediction.css
 │   │   ├── login.css
 │   │   ├── logout.css
-│   │   ├── progress.css
+│   │   ├── style.css
 │   │   ├── result.css
 │   │   ├── register.css
-│   │   ├── upload.css
+│   │   ├── view_files.css
+│   │   ├── file_upload.css
 │   ├── js/                  # JavaScript files
-│   │   ├── index.js
-│   │   ├── upload.js
+│   │   ├── file_upload.js
+│   │   ├── prediction.js
+|   |   ├── view_files.js  
 ├── uploads/                  # User-uploaded files (temporary, user-specific)
 ├── static/images/            # Generated visualizations (user-specific)
 ├── README.md                # This file
@@ -49,13 +51,6 @@ sales-forecasting/
 ```
 
 ## Related Coursework
-
-This project builds on concepts from my deep learning labs, particularly:
-
-- **Lab 11: RNN_Text** (`lab_manuals/RNN_Text.pdf`): Covers Recurrent Neural Networks (RNNs) for sequence modeling, relevant to LSTM implementation.
-- **Lab 12+13: LSTM_TimeSeries** (`lab_manuals/LSTM_TimeSeries.pdf`): Discusses LSTM networks for time series forecasting, used in `app.py` for sales prediction.
-
-See the [deep-learning-labs repository](https://github.com/your-username/deep-learning-labs) for lab manuals and related projects (e.g., `anomaly_detection.ipynb`).
 
 ## Setup Instructions
 
@@ -169,8 +164,7 @@ To forecast sales from a CSV file (`sales.csv`) with columns `Date` and `Sales`:
 
 - **MongoDB**: Ensure MongoDB is running and accessible. Update connection settings in `app.py` for remote databases.
 - **File Management**: User files and visualizations are stored in `uploads/<user_id>/` and `static/images/<user_id>/`, with automatic cleanup after 24 hours.
-- **Permissions**: The code and referenced lab manuals are shared with permission for educational purposes. Contact Mam Iqra Nasem for access to original course materials.
-- **File Size**: Use Git LFS for large files (e.g., `git lfs track "*.csv" "*.xlsx" "*.png"`) if uploading to GitHub.
+- **Permissions**: The code and referenced lab manuals are shared with permission for educational purposes. Contact at nayyabm16@gmail.com for access to original course materials.
 
 
 
