@@ -4,19 +4,57 @@ This repository contains a Flask-based web application for sales forecasting, al
 
 
 
-## Features
+# Sales Forecasting Web Application
 
-- **User Authentication**: Secure registration and login with MongoDB and bcrypt for password hashing.
-- **File Upload**: Supports multiple file formats (CSV, Excel, JSON, XML, PDF, TXT) with a 16MB size limit.
-- **Data Visualization**: Generates histograms, box plots, bar charts, correlation heatmaps, violin plots, pair plots, time series decomposition, and bubble charts for uploaded data.
-- **Sales Forecasting**: Implements ARIMA, Prophet, and LSTM models for time series prediction with customizable periods (3, 6, 9, 12 months) and confidence intervals.
-- **Forecast Visualizations**: Displays forecast comparisons, Prophet confidence intervals, historical trends, and error distributions.
-- **Session Management**: Uses MongoDB for session storage with a 24-hour lifetime and automatic cleanup of user files.
-- **File Management**: Allows users to view, download, and clear uploaded files, with secure user-specific storage.
+Modern Flask-based web app for **time series sales forecasting** with user authentication, powerful EDA visualizations, multiple forecasting models (ARIMA, Prophet, LSTM), and AI-powered forecast explanations.
 
-## Repository Structure
+https://github.com/your-username/sales-forecasting
 
-```
+![App Screenshot - Forecast Comparison](https://via.placeholder.com/1280x720.png?text=Forecast+Comparison+Screenshot)  
+*(Replace with real screenshot – preferably 3–4 screenshots in a gallery)*
+
+## ✨ Features
+
+- **Secure User Authentication** — Register / Login / Logout with bcrypt hashing + MongoDB
+- **Multi-format File Upload** — CSV, Excel (.xls/.xlsx), JSON, XML, PDF, TXT (max 16 MB)
+- **Rich Automatic EDA & Visualizations**  
+  Histograms, box plots, bar charts (top categories), correlation heatmaps, time series decomposition, distribution plots
+- **Multi-model Time Series Forecasting**  
+  - ARIMA (statsmodels)  
+  - Prophet (with confidence intervals)  
+  - Lightweight LSTM (Keras/TensorFlow)  
+  - Ensemble average visualization
+- **Interactive Forecast Configuration**  
+  Choose date column, target value column, forecast horizon (3–24 months), models, confidence level
+- **Beautiful Forecast Visualizations**  
+  - Historical + forecast comparison  
+  - Prophet forecast + uncertainty band  
+  - Ensemble overlay  
+  - Model error distribution
+- **AI-powered Forecast Explainer Chat**  
+  GPT-4o-mini (via OpenRouter + LangChain) — explains forecasts, confidence intervals, trends in plain language
+- **Observability** — LangSmith tracing for LLM calls (prompts, latency, cost)
+- **Smart Session & File Management**  
+  - MongoDB-backed sessions (24h lifetime)  
+  - Per-user isolated file storage with 24-hour auto-cleanup
+- **Download Results** — Original files + generated forecast CSV
+
+## 🛠 Tech Stack
+
+| Layer             | Technologies                                      |
+|-------------------|---------------------------------------------------|
+| Backend           | Flask, Flask-Session, Flask-CORS                  |
+| Database          | MongoDB (users + sessions)                        |
+| Authentication    | bcrypt                                            |
+| Data Processing   | pandas, numpy, scikit-learn                       |
+| Time Series       | statsmodels (ARIMA), prophet, tensorflow/keras (LSTM) |
+| Visualization     | matplotlib, seaborn                               |
+| LLM Integration   | LangChain + OpenRouter (gpt-4o-mini)              |
+| LLM Observability | LangSmith                                         |
+| File Handling     | PyPDF2, werkzeug                                  |
+| Frontend          | Jinja2 templates, vanilla JS + custom CSS         |
+
+
 sales-forecasting/
 ├── app.py                     # Flask application with forecasting and visualization logic
 ├── requirements.txt           # Python dependencies
@@ -49,8 +87,6 @@ sales-forecasting/
 ├── README.md                # This file
 ├── LICENSE                  # MIT License
 ```
-
-## Related Coursework
 
 ## Setup Instructions
 
