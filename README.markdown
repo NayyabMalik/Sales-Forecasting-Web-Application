@@ -4,15 +4,6 @@ This repository contains a Flask-based web application for sales forecasting, al
 
 
 
-# Sales Forecasting Web Application
-
-Modern Flask-based web app for **time series sales forecasting** with user authentication, powerful EDA visualizations, multiple forecasting models (ARIMA, Prophet, LSTM), and AI-powered forecast explanations.
-
-https://github.com/your-username/sales-forecasting
-
-![App Screenshot - Forecast Comparison](https://via.placeholder.com/1280x720.png?text=Forecast+Comparison+Screenshot)  
-*(Replace with real screenshot – preferably 3–4 screenshots in a gallery)*
-
 ## ✨ Features
 
 - **Secure User Authentication** — Register / Login / Logout with bcrypt hashing + MongoDB
@@ -86,7 +77,6 @@ sales-forecasting/
 ├── static/images/            # Generated visualizations (user-specific)
 ├── README.md                # This file
 ├── LICENSE                  # MIT License
-```
 
 ## Setup Instructions
 
