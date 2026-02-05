@@ -4,7 +4,7 @@ This repository contains a Flask-based web application for sales forecasting, al
 
 
 
-## ✨ Features
+## Features
 
 - **Secure User Authentication** — Register / Login / Logout with bcrypt hashing + MongoDB
 - **Multi-format File Upload** — CSV, Excel (.xls/.xlsx), JSON, XML, PDF, TXT (max 16 MB)
@@ -30,7 +30,7 @@ This repository contains a Flask-based web application for sales forecasting, al
   - Per-user isolated file storage with 24-hour auto-cleanup
 - **Download Results** — Original files + generated forecast CSV
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 | Layer             | Technologies                                      |
 |-------------------|---------------------------------------------------|
@@ -46,7 +46,7 @@ This repository contains a Flask-based web application for sales forecasting, al
 | Frontend          | Jinja2 templates, vanilla JS + custom CSS         |
 
 
-sales-forecasting/
+## sales-forecasting/
 ├── app.py                     # Flask application with forecasting and visualization logic
 ├── requirements.txt           # Python dependencies
 ├── templates/                # HTML templates for the web interface
