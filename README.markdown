@@ -1,8 +1,12 @@
 # Sales Forecasting Web Application
 
-This repository contains a Flask-based web application for sales forecasting, allowing users to upload time series data (CSV, Excel, JSON, XML, PDF, or text files), generate statistical visualizations, and predict future sales using ARIMA, Prophet, and LSTM models. The application supports user authentication (registration, login, logout), file management, and interactive forecasting with customizable parameters (e.g., forecast periods, confidence intervals). Visualizations include histograms, box plots, correlation heatmaps, and forecast comparisons, enhancing data analysis and prediction interpretability.
+This repository contains a Flask-based Sales Forecasting Web Application that allows users to upload time series data (CSV, Excel, JSON, XML, PDF, or text files), generate interactive statistical visualizations, and predict future sales using ARIMA, Prophet, and LSTM models.
 
+The application supports user authentication (registration, login, logout), file management, and interactive forecasting with customizable parameters such as forecast periods and confidence intervals. Visualizations include histograms, box plots, correlation heatmaps, and forecast comparisons, improving the interpretability of predictions.
 
+This project also integrates LangChain for conversational AI explanations of forecasts and LangSmith for prompt tracing, latency analysis, and token-cost monitoring, allowing users to ask contextual questions about their data and forecasts.
+
+To see the application in action and explore the outputs, please visit my LinkedIn profile:https://www.linkedin.com/in/nayyab-malik/ 
 
 ## Features
 
